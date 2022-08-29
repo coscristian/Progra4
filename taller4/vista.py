@@ -1,4 +1,22 @@
-from modelo import Libro
+from modelo import Casa, Libro, Pelicula
+
+def mostrarPeliculas(peliculas: Pelicula) -> None:
+    cont = 1
+    for pelicula in peliculas:
+        print(f"Pelicula {cont}")
+        print(f"\tTitulo:\t {pelicula.getTitulo()}")
+        print(f"\tGénero:\t {pelicula.getGenero()}")
+        print(f"\tDuración:\t {pelicula.getDuracion()}")
+        cont += 1      
+
+def mostrarCasas(casas: Casa) -> None:
+    cont = 1
+    for casa in casas:
+        print(f"Casa {cont}")
+        print(f"\tDirección:\t {casa.getDireccion()}")
+        print(f"\tEstrato:\t {casa.getEstrato()}")
+        print(f"\tColor:\t {casa.getColor()}")
+        cont += 1    
 
 def mostrarLibros(libros: Libro) -> None:
     cont = 1

@@ -1,6 +1,12 @@
 import vista as v
 import modelo as mdl
 
+def guardarPelicula(pelicula: mdl.Pelicula):
+    mdl.peliculas.append(pelicula)
+
+def guardarCasa(casa: mdl.Casa) -> None:
+    mdl.casas.append(casa)
+
 def guardarLibro(libro:mdl.Libro) -> None:
     mdl.libros.append(libro)
 
@@ -18,17 +24,48 @@ def seleccionarOpcionLibros(opcion: int) -> None:
         guardarLibro(libro)
         v.mostrarMensaje("Libro creado correctamente")
     elif opcion == 2:
-        v.mostrarLibros(mdl.libros)
+        if len(mdl.libros) > 0:
+            v.mostrarLibros(mdl.libros)
+        else:
+            v.mostrarMensaje("No hay casas creadas!!")
 
 def crearCasa() -> mdl.Casa:
-    pass
+    direccion = v.leerCadena("Ingrese la dirección: ")
+    estrato = v.leerEntero("Ingrese el estrato: ")
+    color = v.leerCadena("Ingrese el color: ")
+    cantPisos = v.leerEntero("Ingrese la cantidad de pisos: ")
+    cantHabitaciones = v.leerEntero("Ingrese la cantidad de habitaciones: ")
+    return mdl.Casa(direccion, estrato, color, cantPisos, cantHabitaciones)
 
 def seleccionarOpcionCasas(opcion: int) -> None:
     if opcion == 1:
-        crearCasa()
+        casa = crearCasa()
         v.mostrarMensaje("Casa creada correctamente")
+        guardarCasa(casa)
     elif opcion == 2:
-        v.mostrarCasas(mdl.casas)
+        if len(mdl.casas) > 0:
+            v.mostrarCasas(mdl.casas)
+        else:
+            v.mostrarMensaje("No hay casas creadas!!")
+
+def crearPelicula() -> mdl.Pelicula:
+    titulo = v.leerCadena("Ingrese el titulo: ")
+    genero = v.leerCadena("Ingrese el género: ")
+    sinopsis = v.leerCadena("Ingrese la sinopsis: ")
+    duracion = v.leerEntero("Ingrese la duración (minutos): ")
+    cantActores = v.leerEntero("Ingrese la cantidad de actores: ")
+    return mdl.Pelicula(titulo, genero, sinopsis, duracion, cantActores)
+    
+def seleccionarOpcionPeliculas(opcion: int) -> None:
+    if opcion == 1:
+        pelicula = crearPelicula()
+        v.mostrarMensaje("Pelicula creada correctamente")
+        guardarPelicula(pelicula)
+    elif opcion == 2:
+        if len(mdl.peliculas) > 0:
+            v.mostrarPeliculas(mdl.peliculas)
+        else:
+            v.mostrarMensaje("No hay peliculas creadas!!")        
 
 def seleccionarEntidad(opcionEntidad: int) -> None:
     if opcionEntidad == 1:
@@ -39,6 +76,10 @@ def seleccionarEntidad(opcionEntidad: int) -> None:
         v.mostrarSubMenuEntidad("Casas")
         opcionSubMenuEntidad = v.leerEntero("¿Qué opción desea seleccionar?: ")
         seleccionarOpcionCasas(opcionSubMenuEntidad)
+    elif opcionEntidad == 3:
+        v.mostrarSubMenuEntidad("Peliculas")
+        opcionSubMenuEntidad = v.leerEntero("¿Qué opción desea seleccionar?: ")
+        seleccionarOpcionPeliculas(opcionSubMenuEntidad)        
         
 def ejercicio1() -> str:
     v.mostrarSubMenu()
@@ -67,13 +108,10 @@ def seleccionarEjercicio(opcion: int) -> None:
 def menuPrincipal():
     opcion = 1
     while opcion != 0:
-        v.mostrarMenuPrincipal()
-        opcion = v.leerEntero("¿Qué opción desea seleccionar?: ")
-        seleccionarEjercicio(opcion)
+        try:
+            v.mostrarMenuPrincipal()
+            opcion = v.leerEntero("¿Qué opción desea seleccionar?: ")
+            seleccionarEjercicio(opcion)
+        except Exception as e:
+            v.mostrarMensaje(e)
     v.mostrarMensaje("Saliendo del Sistema...")
-
-def ejecutarPrograma():
-    try:
-       menuPrincipal()
-    except Exception as e:
-        v.mostrarMensaje(e)

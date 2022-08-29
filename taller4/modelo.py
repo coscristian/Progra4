@@ -44,8 +44,32 @@ class Casa:
         self.cantPisos = cantPisos
         self.cantHabitaciones = cantHabitaciones
     
-    def setNombre()
+    def getDireccion(self) -> str:
+        return self.direccion;
 
+    def getEstrato(self):
+        return self.estrato;
+    
+    def getColor(self):
+        return self.color;
 
+class Pelicula:
+    def __init__(self, titulo: str, genero: str, sinopsis: str, duracion: int, cantActores: int):
+        self.titulo = titulo
+        self.genero = genero
+        self.sinopsis = sinopsis
+        self.duracion = duracion
+        self.cantActores = cantActores
+        
+    def getTitulo(self):
+        return self.titulo
+
+    def getGenero(self):
+        return self.genero
+
+    def getDuracion(self):
+        return self.duracion
 
 libros = []
+casas = []
+peliculas = []
