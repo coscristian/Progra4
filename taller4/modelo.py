@@ -1,3 +1,5 @@
+from datetime import date, datetime
+
 class Libro:
     def __init__(self, nombre: str, autor: str, anioPubl:str, editorial:str, cantPaginas:int):
         self.nombre = nombre
@@ -70,6 +72,129 @@ class Pelicula:
     def getDuracion(self):
         return self.duracion
 
+class Bodega:
+    def __init__(self, nombre: str, direccion: str, espacio: int, tipoVenta:str, cantTrabajadores: int):
+        self.nombre = nombre
+        self.direccion = direccion
+        self.espacio = espacio
+        self.tipoVenta = tipoVenta
+        self.cantTrabajadores = cantTrabajadores
+    
+    def getNombre(self):
+        return self.nombre
+
+    def getDireccion(self):
+        return self.direccion
+    
+    def getEspacio(self):
+        return self.espacio
+    
+    def getTipoVenta(self):
+        return self.tipoVenta
+
+    def getCantTrabajadores(self):
+        return self.cantTrabajadores
+
+class Lampara:
+    def __init__(self, marca: str, precio: int, ubicacion: str, colgante: str, moderna:str):
+        self.marca = marca
+        self.precio = precio
+        self.ubicacion = ubicacion
+        self.colgante = colgante
+        self.moderna = moderna
+    
+    def getMarca(self):
+        return self.marca
+
+    def getPrecio(self):
+        return self.precio
+    
+    def getUbicacion(self):
+        return self.ubicacion
+    
+    def getColgante(self):
+        return self.colgante
+    
+    def getModerna(self):
+        return self.moderna
+
+#Ejercicio 2
+class Rectangulo():
+    def __init__(self, base: int, altura: int):
+        self.base = base
+        self.altura = altura
+    
+    def getBase(self):
+        return self.base
+
+    def getAltura(self):
+        return self.altura
+    
+    def getArea(self):
+        return self.base * self.altura
+
+    def getPerimetro(self):
+        return 2 * (self.base * self.altura)
+
+class Empleado():
+    def __init__(self, nombre: str, genero: str, edad: int, fechaInicio: str, numHorasMes: int, valorHora: int):
+        self.nombre = nombre
+        self.genero = genero
+        self.edad = edad
+        self.fechaInicio = fechaInicio
+        self.numHorasMes = numHorasMes
+        self.valorHora = valorHora
+        
+    def getNombre(self):
+        return self.nombre
+    
+    def getGenero(self):
+        return self.genero
+    
+    def getEdad(self):
+        return self.edad
+    
+    def getFechaInicio(self):
+        return self.fechaInicio
+    
+    def getNumHorasMes(self):
+        return self.numHorasMes
+    
+    def getValorHora(self):
+        return self.valorHora
+    
+    def getSalarioMensual(self):
+        return self.numHorasMes * self.valorHora
+    
+    def getDiasAntiguedad(self):
+        fInicio = datetime.strptime(self.fechaInicio, "%Y/%m/%d")
+        strHoy = datetime.today().strftime("%Y/%m/%d")
+        fHoy = datetime.strptime(strHoy, '%Y/%m/%d')
+        return fHoy - fInicio
+    
+    def getSemanasAntiguedad(self):
+        return self.getDiasAntiguedad() // 7
+    
+    def getAniosAntiguedad(self):
+        return int(self.getSemanasAntiguedad() * 0.0191781)
+    
+    def getAniosParaPensionPorEdad(self):
+        if self.genero == "M":
+            return 62 - self.edad
+        else:
+            return 57 - self.edad
+    
+    def getAniosParaPensionPorCotizacion(self):
+        return (1300 - self.getSemanasAntiguedad()) * 0.0191781
+    
+    def cantPagoSalud(self):
+        return self.getSalarioMensual * (4 / 100)
+
+    def cantPagoPension(self):
+        return self.getSalarioMensual * (4 / 100)
+    
 libros = []
 casas = []
 peliculas = []
+bodegas = []
+lamparas = []

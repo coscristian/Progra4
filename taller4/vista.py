@@ -1,4 +1,45 @@
-from modelo import Casa, Libro, Pelicula
+from modelo import *
+
+def mostrarEmpleado(empleado: Empleado) -> None:
+    print(f"\tNombre:\t {empleado.getNombre()}")
+    print(f"\tGénero:\t {empleado.getGenero()}")
+    print(f"\tEdad:\t {empleado.getEdad()}")
+    print(f"\tFechaIn:\t {empleado.getFechaInicio()}")
+    print(f"\tNumHorasMes:\t {empleado.getNumHorasMes()}")
+    print(f"\tValorHora:\t {empleado.getValorHora()}")
+    print(f"\tAntiguedad:\t {empleado.getAniosAntiguedad()}")
+    print(f"\t\tTiempo para pensionarse por edad:\t {empleado.getAniosParaPensionPorEdad()}")
+    print(f"\t\tTiempo para pensionarse por cotización:\t {empleado.getAniosParaPensionPorCotizacion()}")
+    print(f"\t\tPago Salud al año:\t {empleado.cantPagoSalud()}")
+    print(f"\t\tPago pensión al año:\t {empleado.cantPagoPension()}")
+
+def mostrarRectangulo(rectangulo: Rectangulo) -> None:
+    print(f"\tBas:\t {rectangulo.getBase()}")
+    print(f"\tAlt:\t {rectangulo.getAltura()}")
+    print(f"\tAr:\t\t {rectangulo.getArea()}")
+    print(f"\tPerim:\t\t {rectangulo.getPerimetro()}")
+
+def mostrarLamparas(lamparas: Lampara) -> None:
+    cont = 1
+    for lampara in lamparas:
+        print(f"Lampara {cont}")
+        print(f"\tMarca:\t {lampara.getMarca()}")
+        print(f"\tPrecio:\t {lampara.getPrecio()}")
+        print(f"\tUbicacion:\t {lampara.getUbicacion()}")
+        print(f"\tColgante:\t {lampara.getColgante()}")
+        print(f"\tModerna:\t {lampara.getModerna()}")
+        cont += 1      
+
+def mostrarBodegas(bodegas: Bodega) -> None:
+    cont = 1
+    for bodega in bodegas:
+        print(f"Bodega {cont}")
+        print(f"\tNombre:\t {bodega.getNombre()}")
+        print(f"\tDirección:\t {bodega.getDireccion()}")
+        print(f"\tEspacio:\t {bodega.getEspacio()}")
+        print(f"\tTipo producto:\t {bodega.getTipoVenta()}")
+        print(f"\tCant Trabjadores:\t {bodega.getCantTrabajadores()}")
+        cont += 1             
 
 def mostrarPeliculas(peliculas: Pelicula) -> None:
     cont = 1
@@ -41,11 +82,6 @@ def mostrarSubMenu() -> None:
     print("3. Película")
     print("4. Bodega")
     print("5. Lámpara")
-    print("6. Modem")
-    print("7. Router")
-    print("8. Maletín")
-    print("9. Paciente Oncológico")
-    print("10. Gato")
 
 def mostrarMensaje(mensaje = "") -> None:
     print("MENSAJE: ", mensaje) 

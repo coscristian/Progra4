@@ -1,7 +1,13 @@
 import vista as v
 import modelo as mdl
 
-def guardarPelicula(pelicula: mdl.Pelicula):
+def guardarLampara(lampara: mdl.Lampara) -> None:
+    mdl.lamparas.append(lampara)
+    
+def guardarBodega(bodega: mdl.Bodega) -> None:
+    mdl.bodegas.append(bodega)
+
+def guardarPelicula(pelicula: mdl.Pelicula) -> None:
     mdl.peliculas.append(pelicula)
 
 def guardarCasa(casa: mdl.Casa) -> None:
@@ -67,6 +73,44 @@ def seleccionarOpcionPeliculas(opcion: int) -> None:
         else:
             v.mostrarMensaje("No hay peliculas creadas!!")        
 
+def crearBodega() -> mdl.Bodega:
+    nombre = v.leerCadena("Ingrese el nombre: ")
+    direccion = v.leerCadena("Ingrese la dirección: ")
+    espacio = v.leerEntero("Ingrese el espacio en metros: ")
+    tipoVenta = v.leerCadena("Ingrese el producto que se vende: ")
+    cantEmpleados = v.leerEntero("Ingrese la cantidad de empleados: ")
+    return mdl.Bodega(nombre, direccion, espacio, tipoVenta, cantEmpleados)
+
+def seleccionarOpcionBodegas(opcion: int) -> None:
+    if opcion == 1:
+        bodega = crearBodega()
+        v.mostrarMensaje("Bodega creada correctamente")
+        guardarBodega(bodega)
+    elif opcion == 2:
+        if len(mdl.bodegas) > 0:
+            v.mostrarBodegas(mdl.bodegas)
+        else:
+            v.mostrarMensaje("No hay bodegas creadas!!")          
+
+def crearLampara() -> mdl.Lampara:
+    marca = v.leerCadena("Ingrese la marca: ")
+    precio = v.leerEntero("Ingrese el precio: ")
+    ubicacion = v.leerCadena("Ingrese la ubicacion: ")
+    colgante = v.leerCadena("Es colgante?: ")
+    moderna = v.leerCadena("Es moderna?: ")
+    return mdl.Lampara(marca, precio, ubicacion, colgante, moderna)
+
+def seleccionarOpcionLamparas(opcion: int) -> None:
+    if opcion == 1:
+        lampara = crearLampara()
+        v.mostrarMensaje("Lampara creada correctamente")
+        guardarLampara(lampara)
+    elif opcion == 2:
+        if len(mdl.lamparas) > 0:
+            v.mostrarLamparas(mdl.lamparas)
+        else:
+            v.mostrarMensaje("No hay lamparas creadas!!")       
+
 def seleccionarEntidad(opcionEntidad: int) -> None:
     if opcionEntidad == 1:
         v.mostrarSubMenuEntidad("Libros")
@@ -79,21 +123,52 @@ def seleccionarEntidad(opcionEntidad: int) -> None:
     elif opcionEntidad == 3:
         v.mostrarSubMenuEntidad("Peliculas")
         opcionSubMenuEntidad = v.leerEntero("¿Qué opción desea seleccionar?: ")
-        seleccionarOpcionPeliculas(opcionSubMenuEntidad)        
+        seleccionarOpcionPeliculas(opcionSubMenuEntidad)      
+    elif opcionEntidad == 4:
+        v.mostrarSubMenuEntidad("Bodegas")  
+        opcionSubMenuEntidad = v.leerEntero("¿Qué opción desea seleccionar?: ")
+        seleccionarOpcionBodegas(opcionSubMenuEntidad)
+    elif opcionEntidad == 5:
+        v.mostrarSubMenuEntidad("Lámparas")  
+        opcionSubMenuEntidad = v.leerEntero("¿Qué opción desea seleccionar?: ")
+        seleccionarOpcionLamparas(opcionSubMenuEntidad)        
         
-def ejercicio1() -> str:
+def ejercicio1() -> None:
     v.mostrarSubMenu()
     opcionEntidad = v.leerEntero("¿Qué entidad desea seleccionar?: ")
     seleccionarEntidad(opcionEntidad)
+
+def crearRectangulo() -> mdl.Rectangulo:
+    base = v.leerEntero("Ingrese la base: ")
+    altura = v.leerEntero("Ingrese la altura: ")
+    return mdl.Rectangulo(base, altura)
+
+def ejercicio2() -> None:
+    v.mostrarMensaje(".: Rectangulo :.")
+    rectangulo = crearRectangulo()
+    v.mostrarRectangulo(rectangulo)
+
+def crearEmpleado() -> mdl.Empleado:
+    nombre = v.leerCadena("Ingrese el nombre: ")
+    genero = v.leerCadena("Ingrese el género: ")
+    edad = v.leerEntero("Ingrese la edad:")
+    fechaInicio = v.leerCadena("Ingrese la fecha de inicio (Y/M/D): ")
+    numHorasMes = v.leerEntero("Ingrese las horas por mes: ")
+    valorHora = v.leerEntero("Ingrese el valor de la hora: ")
+    return mdl.Empleado(nombre, genero, edad, fechaInicio, numHorasMes, valorHora)
+    
+def ejercicio3() -> None:
+    v.mostrarMensaje(".: Empleado :.")
+    empleado = crearEmpleado()
+    v.mostrarEmpleado(empleado)
 
 def seleccionarEjercicio(opcion: int) -> None:
     if opcion == 1:
         ejercicio1()
     elif opcion == 2:
-        #ejercicio2()
-        pass
+        ejercicio2()
     elif opcion == 3:
-        #ejercicio3()
+        ejercicio3()
         pass
     elif opcion == 4:
         #ejercicio4()
