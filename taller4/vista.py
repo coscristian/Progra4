@@ -1,5 +1,47 @@
 from modelo import *
 
+def mostrarPromedoGeneral(asignaturas: Asignatura) -> None:
+    sumaPromedios = 0
+    for asignatura in asignaturas:
+        sumaPromedios += asignatura.getPromedio()
+
+    promedioGeneral = sumaPromedios / 2
+    print(f"Promedio general {promedioGeneral}")
+    if promedioGeneral < 3:
+        print("\tSemestre Pérdido")
+    elif 3 <= promedioGeneral <= 4:
+        print("\tBuen trabajo")
+    elif 4 < promedioGeneral <= 5:
+        print("\tFelicidades serás becado")
+        
+def mostrarAsignaturas(asignaturas: Asignatura) -> None:
+    for asignatura in asignaturas:
+        print(f"Asignatura {asignatura.getNombre()}")
+        print(f"\tNota 1:  {asignatura.getNota1()}")
+        print(f"\tNota 2:  {asignatura.getNota2()}")
+        print(f"\tNota 3:  {asignatura.getNota3()}")
+        print(f"\tNota 4:  {asignatura.getNota4()}")
+        print(f"\t\tPromedio:  {asignatura.getPromedio()}")
+        if (asignatura.getPromedio() < 3):
+            print("\t\tAsignatura perdida")
+        else:
+            print("\t\tAsignatura ganada")
+
+def mostrarMenuOperaciones() -> None:
+    print("1. Suma")
+    print("2. Resta")
+    print("3. Multiplicacion")
+    print("4. División")
+    print("5. Cuadrado")
+    print("6. Exponente")
+    print("7. Logaritmo")
+    print("8. Seno")
+    print("9. Coseno")
+    print("10. Tagente")
+    print("11. ArcoTangente")
+    print("12. ArcoCoseno")
+    print("¿Qué opcion dese seleccionar?")
+    
 def mostrarEmpleado(empleado: Empleado) -> None:
     print(f"\tNombre:\t {empleado.getNombre()}")
     print(f"\tGénero:\t {empleado.getGenero()}")
@@ -7,11 +49,13 @@ def mostrarEmpleado(empleado: Empleado) -> None:
     print(f"\tFechaIn:\t {empleado.getFechaInicio()}")
     print(f"\tNumHorasMes:\t {empleado.getNumHorasMes()}")
     print(f"\tValorHora:\t {empleado.getValorHora()}")
-    print(f"\tAntiguedad:\t {empleado.getAniosAntiguedad()}")
-    print(f"\t\tTiempo para pensionarse por edad:\t {empleado.getAniosParaPensionPorEdad()}")
-    print(f"\t\tTiempo para pensionarse por cotización:\t {empleado.getAniosParaPensionPorCotizacion()}")
-    print(f"\t\tPago Salud al año:\t {empleado.cantPagoSalud()}")
-    print(f"\t\tPago pensión al año:\t {empleado.cantPagoPension()}")
+    print(f"\tAntiguedad:")
+    print(f"\t\tAños:\t {empleado.getAniosAntiguedad()} años")
+    print(f"\t\tDías:\t {empleado.getDiasAntiguedad()} días")
+    print(f"\tTiempo para pensionarse por edad:\t {empleado.getAniosParaPensionPorEdad()} años")
+    print(f"\tTiempo para pensionarse por cotización:\t {empleado.getAniosParaPensionPorCotizacion()} años")
+    print(f"\tPago Salud al año:\t ${empleado.cantPagoSalud()}")
+    print(f"\tPago pensión al año:\t ${empleado.cantPagoPension()}")
 
 def mostrarRectangulo(rectangulo: Rectangulo) -> None:
     print(f"\tBas:\t {rectangulo.getBase()}")
@@ -89,6 +133,9 @@ def mostrarMensaje(mensaje = "") -> None:
 def leerEntero(mensaje = "") -> int:
     return int(input(mensaje))
 
+def leerReal(mensaje = "") -> int:
+    return float(input(mensaje))
+
 def leerCadena(mensaje = "") -> int:
     return input(mensaje)
 
@@ -99,5 +146,4 @@ def mostrarMenuPrincipal():
     print("2. Ejercicio 2")
     print("3. Ejercicio 3")
     print("4. Ejercicio 4")
-    print("5. Ejercicio 5")
     print("6. Ejercicio 6")

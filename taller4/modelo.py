@@ -1,4 +1,5 @@
 from datetime import date, datetime
+import math
 
 class Libro:
     def __init__(self, nombre: str, autor: str, anioPubl:str, editorial:str, cantPaginas:int):
@@ -167,10 +168,11 @@ class Empleado():
         return self.numHorasMes * self.valorHora
     
     def getDiasAntiguedad(self):
-        fInicio = datetime.strptime(self.fechaInicio, "%Y/%m/%d")
-        strHoy = datetime.today().strftime("%Y/%m/%d")
-        fHoy = datetime.strptime(strHoy, '%Y/%m/%d')
-        return fHoy - fInicio
+        arrFecha = self.fechaInicio.split("/")
+        
+        fInicio = date(int(arrFecha[0]), int(arrFecha[1]), int(arrFecha[2]))
+        fHoy = date(2022, 8, 31)
+        return (fHoy - fInicio).days
     
     def getSemanasAntiguedad(self):
         return self.getDiasAntiguedad() // 7
@@ -185,16 +187,87 @@ class Empleado():
             return 57 - self.edad
     
     def getAniosParaPensionPorCotizacion(self):
-        return (1300 - self.getSemanasAntiguedad()) * 0.0191781
+        if self.getSemanasAntiguedad() < 1300:
+            return int((1300 - self.getSemanasAntiguedad()) * 0.0191781)
+        else:
+            return 0
     
     def cantPagoSalud(self):
-        return self.getSalarioMensual * (4 / 100)
+        return self.getSalarioMensual() * (4 / 100)
 
     def cantPagoPension(self):
-        return self.getSalarioMensual * (4 / 100)
+        return self.getSalarioMensual() * (4 / 100)
+
+class Calculadora():
+    def __init__(self, num1, num2):
+        self.num1 = num1
+        self.num2 = num2
+      
+    def suma(self):
+        return self.num1 + self.num2
+    
+    def resta(self):
+        return self.num1 - self.num2
+    
+    def multiplicacion(self):
+        return self.num1 * self.num2
+    
+    def division(self):
+        return self.num1 // self.num2
+    
+    def cuadrado(self):
+        return math.pow(self.num1, 2)
+    
+    def exponente(self):
+        return math.pow(self.num1, self.num2)
+    
+    def logaritmo(self):
+        return math.log10(self.num1)
+    
+    def seno(self):
+        return math.sin(self.num1)
+    
+    def coseno(self):
+        return math.cos(self.num1)
+    
+    def tangente(self):
+        return math.tan(self.num1)    
+    
+    def arc_tan(self):
+        return math.atan(self.num1)
+    
+    def arc_coseno(self):
+        return math.acos(self.num1)
+
+class Asignatura:
+    def __init__(self, nombre: str, nota1 :int, nota2 :int, nota3 :int, nota4:int):
+        self.nombre = nombre
+        self.nota1 = nota1
+        self.nota2 = nota2
+        self.nota3 = nota3
+        self.nota4 = nota4
+
+    def getNombre(self):
+        return self.nombre
+    
+    def getNota1(self):
+        return self.nota1
+    
+    def getNota2(self):
+        return self.nota2
+    
+    def getNota3(self):
+        return self.nota3
+    
+    def getNota4(self):
+        return self.nota4
+    
+    def getPromedio(self):
+        return (self.nota1 + self.nota2 + self.nota3 + self.nota4) / 4
     
 libros = []
 casas = []
 peliculas = []
 bodegas = []
 lamparas = []
+asignaturas = []

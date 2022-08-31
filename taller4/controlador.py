@@ -162,6 +162,72 @@ def ejercicio3() -> None:
     empleado = crearEmpleado()
     v.mostrarEmpleado(empleado)
 
+def seleccionarOperacion(opcion: int) -> int:
+    num1 = v.leerEntero("Ingrese el primero número: ")
+    if opcion == 1:
+        num2 = v.leerEntero("Ingrese el segundo número: ")
+        calculadora = mdl.Calculadora(num1, num2)
+        v.mostrarMensaje(f"Resultado: {calculadora.suma()}")
+    elif opcion == 2:
+        num2 = v.leerEntero("Ingrese el segundo número: ")
+        calculadora = mdl.Calculadora(num1, num2)
+        v.mostrarMensaje(f"Resultado: {calculadora.resta()}")
+    elif opcion == 3:
+        num2 = v.leerEntero("Ingrese el segundo número: ")
+        calculadora = mdl.Calculadora(num1, num2)
+        v.mostrarMensaje(f"Resultado: {calculadora.multiplicacion()}")
+    elif opcion == 4:
+        num2 = v.leerEntero("Ingrese el segundo número: ")
+        calculadora = mdl.Calculadora(num1, num2)
+        v.mostrarMensaje(f"Resultado: {calculadora.division()}")
+    elif opcion == 5:
+        calculadora = mdl.Calculadora(num1, 0)
+        v.mostrarMensaje(f"Resultado: {calculadora.cuadrado()}")
+    elif opcion == 6:
+        num2 = v.leerEntero("Ingrese el segundo número: ")
+        calculadora = mdl.Calculadora(num1, num2)
+        v.mostrarMensaje(f"Resultado: {calculadora.exponente()}")
+    elif opcion == 7:
+        calculadora = mdl.Calculadora(num1, 0)
+        v.mostrarMensaje(f"Resultado: {calculadora.logaritmo()}")
+    elif opcion == 8:
+        calculadora = mdl.Calculadora(num1, 0)
+        v.mostrarMensaje(f"Resultado: {calculadora.seno()}")
+    elif opcion == 9:
+        calculadora = mdl.Calculadora(num1, 0)
+        v.mostrarMensaje(f"Resultado: {calculadora.coseno()}")
+    elif opcion == 10:
+        calculadora = mdl.Calculadora(num1, 0)
+        v.mostrarMensaje(f"Resultado: {calculadora.tangente()}")
+    elif opcion == 11:
+        calculadora = mdl.Calculadora(num1, 0)
+        v.mostrarMensaje(f"Resultado: {calculadora.arc_tan()}")
+    elif opcion == 12:
+        calculadora = mdl.Calculadora(num1, 0)
+        v.mostrarMensaje(f"Resultado: {calculadora.arc_coseno()}")            
+
+def ejercicio4() -> None:
+    v.mostrarMensaje(".: Calculadora :.")
+    v.mostrarMenuOperaciones()
+    seleccionarOperacion(v.leerEntero())
+
+def crearAsignatura() -> mdl.Asignatura:
+    nombre = v.leerCadena("Ingrese el nombre de la asignatura: ")
+    nota1 = v.leerReal("Ingrese la nota 1: ")
+    nota2 = v.leerReal("Ingrese la nota 2: ")
+    nota3 = v.leerReal("Ingrese la nota 3: ")
+    nota4 = v.leerReal("Ingrese la nota 4: ")
+    return mdl.Asignatura(nombre, nota1, nota2, nota3, nota4)
+    
+def ejercicio6():
+    v.mostrarMensaje(".. Aginaturas :.")
+    for i in range(2):
+        asignatura = crearAsignatura()
+        mdl.asignaturas.append(asignatura)
+    v.mostrarMensaje("")
+    v.mostrarAsignaturas(mdl.asignaturas)    
+    v.mostrarPromedoGeneral(mdl.asignaturas)
+    
 def seleccionarEjercicio(opcion: int) -> None:
     if opcion == 1:
         ejercicio1()
@@ -169,16 +235,10 @@ def seleccionarEjercicio(opcion: int) -> None:
         ejercicio2()
     elif opcion == 3:
         ejercicio3()
-        pass
     elif opcion == 4:
-        #ejercicio4()
-        pass
-    elif opcion == 5:
-        #ejercicio5()
-        pass
+        ejercicio4()
     elif opcion == 6:
-        #ejercicio6()
-        pass
+        ejercicio6()
 
 def menuPrincipal():
     opcion = 1
